@@ -3123,12 +3123,12 @@ case $host_os in *\ *) host_os=`echo "$host_os" | sed 's/ /-/g'`;; esac
 
 if test "$host_vendor" = apple
 then
-	CPPFLAGS="$CPPFLAGS -I /sw/include -I/opt/local/include -I/usr/X11R6/include"
-	LIBS="$LIBS -L/sw/lib -L/opt/local/lib"
+	CPPFLAGS="$CPPFLAGS -I /sw/include -I/usr/local/include -I/usr/X11R6/include"
+	LIBS="$LIBS -L/sw/lib -L/usr/local/lib"
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: Adding /sw to the build path." >&5
 $as_echo "$as_me: Adding /sw to the build path." >&6;}
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: Adding /opt/local to the build path." >&5
-$as_echo "$as_me: Adding /opt/local to the build path." >&6;}
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: Adding /usr/local to the build path." >&5
+$as_echo "$as_me: Adding /usr/local to the build path." >&6;}
 	osx_hacks=yes
 
 fi
@@ -5267,4 +5267,3 @@ if test -n "$ac_unrecognized_opts" && test "$enable_option_checking" != no; then
   { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: unrecognized options: $ac_unrecognized_opts" >&5
 $as_echo "$as_me: WARNING: unrecognized options: $ac_unrecognized_opts" >&2;}
 fi
-

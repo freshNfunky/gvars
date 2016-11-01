@@ -11,10 +11,10 @@ options=""
 AC_CANONICAL_HOST
 if test "$host_vendor" = apple
 then
-	CPPFLAGS="$CPPFLAGS -I /sw/include -I/opt/local/include -I/usr/X11R6/include"
-	LIBS="$LIBS -L/sw/lib -L/opt/local/lib"
+	CPPFLAGS="$CPPFLAGS -I /sw/include -I/usr/local/include -I/usr/X11R6/include"
+	LIBS="$LIBS -L/sw/lib -L/usr/local/lib"
 	AC_MSG_NOTICE([Adding /sw to the build path.])
-	AC_MSG_NOTICE([Adding /opt/local to the build path.])
+	AC_MSG_NOTICE([Adding /usr/local to the build path.])
 	AC_SUBST(osx_hacks,yes)
 fi
 
@@ -28,16 +28,16 @@ define(APPEND, [$1="$$1 $2"])
 dnl TEST_AND_SET_CXXFLAG(flag, [program], [run])
 dnl
 dnl This attempts to compile a and run program with a certain compiler flag.
-dnl If no program is given, then the minimal C++ program is compiled, and 
-dnl this tests just the validity of the compiler flag. 
+dnl If no program is given, then the minimal C++ program is compiled, and
+dnl this tests just the validity of the compiler flag.
 dnl
 dnl Taken from the libCVD configure.in
 define([TEST_AND_SET_CXXFLAG],[
 	if test "$3" == ""
 	then
-		AC_MSG_CHECKING([if compiler flag $1 works])	
+		AC_MSG_CHECKING([if compiler flag $1 works])
 	else
-		AC_MSG_CHECKING([$3])	
+		AC_MSG_CHECKING([$3])
 	fi
 	save_CXXFLAGS="$CXXFLAGS"
 	APPEND(CXXFLAGS, [$1])
@@ -48,8 +48,8 @@ define([TEST_AND_SET_CXXFLAG],[
 		[AC_RUN_IFELSE([prog], [cvd_conf_test=1],[cvd_conf_test=0], [cvd_conf_test=0])],
 		[AC_COMPILE_IFELSE([prog], [cvd_conf_test=1],[cvd_conf_test=0])]
 	)
-	
-	
+
+
 	popdef([prog])
 
 	if test $cvd_conf_test = 1
@@ -90,7 +90,7 @@ then
 
 	a=
 	AC_COMPILE_IFELSE([#include <TooN/TooN.h>
-int main(){TooN::Vector<2> v;return 0;}], [a=1]) 
+int main(){TooN::Vector<2> v;return 0;}], [a=1])
 
 	if test x$a = x1
 	then
@@ -106,7 +106,7 @@ int main(){TooN::Vector<2> v;return 0;}], [a=1])
 
 	a=
 	AC_COMPILE_IFELSE([#include <TooN/TooN.h>
-int main(){TooN::Vector<2, float> v;return 0;}], [a=1]) 
+int main(){TooN::Vector<2, float> v;return 0;}], [a=1])
 
 	if test x$a = x1
 	then
@@ -133,12 +133,12 @@ for curse in "" ncurses curses
 do
 	LIBS="$foo_LIBS"
 	if test x$curse != x
-	then 
+	then
 		AC_MSG_CHECKING($curse as a requirement for readline)
 		AC_MSG_RESULT()
 		AC_CHECK_LIB($curse, tputs)
 	fi
-		
+
 	AC_CHECK_LIB(readline,rl_done,[],[])
 
 	if test x$ac_cv_lib_readline_rl_done == xyes
